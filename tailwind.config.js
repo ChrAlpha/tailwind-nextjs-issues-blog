@@ -1,71 +1,33 @@
-// @ts-check
-const { fontFamily } = require('tailwindcss/defaultTheme')
-const colors = require('tailwindcss/colors')
-
-/** @type {import("tailwindcss/types").Config } */
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    './node_modules/pliny/**/*.js',
-    './app/**/*.{js,ts,jsx,tsx}',
-    './pages/**/*.{js,ts,tsx}',
-    './components/**/*.{js,ts,tsx}',
-    './layouts/**/*.{js,ts,tsx}',
-    './data/**/*.mdx',
-  ],
-  darkMode: 'class',
+  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
+  darkMode: "class",
   theme: {
     extend: {
-      lineHeight: {
-        11: '2.75rem',
-        12: '3rem',
-        13: '3.25rem',
-        14: '3.5rem',
+      minHeight: {
+        header: "3rem",
       },
-      fontFamily: {
-        sans: ['var(--font-space-grotesk)', ...fontFamily.sans],
+      maxHeight: {
+        toc: "60vh",
       },
-      colors: {
-        primary: colors.pink,
-        gray: colors.gray,
+      maxWidth: {
+        def: "64rem",
+        main: "720px",
       },
-      typography: ({ theme }) => ({
-        DEFAULT: {
-          css: {
-            a: {
-              color: theme('colors.primary.500'),
-              '&:hover': {
-                color: `${theme('colors.primary.600')}`,
-              },
-              code: { color: theme('colors.primary.400') },
-            },
-            'h1,h2': {
-              fontWeight: '700',
-              letterSpacing: theme('letterSpacing.tight'),
-            },
-            h3: {
-              fontWeight: '600',
-            },
-            code: {
-              color: theme('colors.indigo.500'),
-            },
-          },
-        },
-        invert: {
-          css: {
-            a: {
-              color: theme('colors.primary.500'),
-              '&:hover': {
-                color: `${theme('colors.primary.400')}`,
-              },
-              code: { color: theme('colors.primary.400') },
-            },
-            'h1,h2,h3,h4,h5,h6': {
-              color: theme('colors.gray.100'),
-            },
-          },
-        },
-      }),
+      width: {
+        def: "64rem",
+        main: "720px",
+      },
+      aspectRatio: {
+        cover: "5 / 2",
+      },
+      backgroundImage: {
+        "cc-light":
+          "url('data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA0OTYgNTEyJz48cGF0aCBmaWxsPScjNGE0YTRhJyBkPSdNMjQ1LjggMjE0LjlsLTMzLjIgMTcuM2MtOS40LTE5LjYtMjUuMi0yMC0yNy40LTIwLTIyLjIgMC0zMy4zIDE0LjYtMzMuMyA0My45IDAgMjMuNSA5LjIgNDMuOCAzMy4zIDQzLjggMTQuNCAwIDI0LjYtNyAzMC41LTIxLjNsMzAuNiAxNS41YTczLjIgNzMuMiAwIDAxLTY1LjEgMzljLTIyLjYgMC03NC0xMC4zLTc0LTc3IDAtNTguNyA0My03NyA3Mi42LTc3IDMwLjgtLjEgNTIuNyAxMS45IDY2IDM1Ljh6bTE0MyAwbC0zMi43IDE3LjNjLTkuNS0xOS44LTI1LjctMjAtMjcuOS0yMC0yMi4xIDAtMzMuMiAxNC42LTMzLjIgNDMuOSAwIDIzLjUgOS4yIDQzLjggMzMuMiA0My44IDE0LjUgMCAyNC43LTcgMzAuNS0yMS4zbDMxIDE1LjVjLTIgMy44LTIxLjMgMzktNjUgMzktMjIuNyAwLTc0LTkuOS03NC03NyAwLTU4LjcgNDMtNzcgNzIuNi03N0MzNTQgMTc5IDM3NiAxOTEgMzg5IDIxNC44ek0yNDcuNyA4QzEwNC43IDggMCAxMjMgMCAyNTZjMCAxMzguNCAxMTMuNiAyNDggMjQ3LjYgMjQ4QzM3Ny41IDUwNCA0OTYgNDAzIDQ5NiAyNTYgNDk2IDExOCAzODkuNCA4IDI0Ny42IDh6bS44IDQ1MC44Yy0xMTIuNSAwLTIwMy43LTkzLTIwMy43LTIwMi44IDAtMTA1LjUgODUuNS0yMDMuMyAyMDMuOC0yMDMuM0EyMDEuNyAyMDEuNyAwIDAxNDUxLjMgMjU2YzAgMTIxLjctOTkuNyAyMDIuOS0yMDIuOSAyMDIuOXonLz48L3N2Zz4=')",
+        "cc-dark":
+          "url('data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA0OTYgNTEyJz48cGF0aCBmaWxsPScjYjBiMGIwJyBkPSdNMjQ1LjggMjE0LjlsLTMzLjIgMTcuM2MtOS40LTE5LjYtMjUuMi0yMC0yNy40LTIwLTIyLjIgMC0zMy4zIDE0LjYtMzMuMyA0My45IDAgMjMuNSA5LjIgNDMuOCAzMy4zIDQzLjggMTQuNCAwIDI0LjYtNyAzMC41LTIxLjNsMzAuNiAxNS41YTczLjIgNzMuMiAwIDAxLTY1LjEgMzljLTIyLjYgMC03NC0xMC4zLTc0LTc3IDAtNTguNyA0My03NyA3Mi42LTc3IDMwLjgtLjEgNTIuNyAxMS45IDY2IDM1Ljh6bTE0MyAwbC0zMi43IDE3LjNjLTkuNS0xOS44LTI1LjctMjAtMjcuOS0yMC0yMi4xIDAtMzMuMiAxNC42LTMzLjIgNDMuOSAwIDIzLjUgOS4yIDQzLjggMzMuMiA0My44IDE0LjUgMCAyNC43LTcgMzAuNS0yMS4zbDMxIDE1LjVjLTIgMy44LTIxLjMgMzktNjUgMzktMjIuNyAwLTc0LTkuOS03NC03NyAwLTU4LjcgNDMtNzcgNzIuNi03N0MzNTQgMTc5IDM3NiAxOTEgMzg5IDIxNC44ek0yNDcuNyA4QzEwNC43IDggMCAxMjMgMCAyNTZjMCAxMzguNCAxMTMuNiAyNDggMjQ3LjYgMjQ4QzM3Ny41IDUwNCA0OTYgNDAzIDQ5NiAyNTYgNDk2IDExOCAzODkuNCA4IDI0Ny42IDh6bS44IDQ1MC44Yy0xMTIuNSAwLTIwMy43LTkzLTIwMy43LTIwMi44IDAtMTA1LjUgODUuNS0yMDMuMyAyMDMuOC0yMDMuM0EyMDEuNyAyMDEuNyAwIDAxNDUxLjMgMjU2YzAgMTIxLjctOTkuNyAyMDIuOS0yMDIuOSAyMDIuOXonLz48L3N2Zz4=')",
+      },
     },
   },
-  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
-}
+  plugins: [require("@tailwindcss/typography")],
+};
